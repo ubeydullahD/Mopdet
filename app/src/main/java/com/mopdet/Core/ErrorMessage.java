@@ -1,4 +1,4 @@
-package com.mopdet.Model.PojoModels;
+package com.mopdet.Core;
 
 public class ErrorMessage {
     private int code;
