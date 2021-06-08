@@ -1,5 +1,8 @@
 package com.mopdet.Model.PojoModels.RegisterResponseSuccess.LoginUser;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class LoginUser {
 
     @SerializedName("user")

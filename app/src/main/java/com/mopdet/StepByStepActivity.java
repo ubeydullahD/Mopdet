@@ -1,5 +1,9 @@
 package com.mopdet;
 
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 public class StepByStepActivity extends AppCompatActivity {
 
     private final static String TAG_FRAGMENT = "TAG_FRAGMENT";

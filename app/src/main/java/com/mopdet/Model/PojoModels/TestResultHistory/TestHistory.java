@@ -1,5 +1,8 @@
 package com.mopdet.Model.PojoModels.TestResultHistory;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class TestHistory {
 
     @SerializedName("id")

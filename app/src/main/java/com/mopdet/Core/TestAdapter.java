@@ -1,10 +1,25 @@
 package com.mopdet.Core;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.mopdet.Model.PojoModels.Test.Test;
+import com.mopdet.R;
+
+import java.util.ArrayList;
 
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.CardViewTasatimNesneleriniTutucu> {
 
@@ -14,10 +29,10 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.CardViewTasati
     SharedPreferences mPrefs ;
     private View mView;
     private Test test;
-    private  TextView textView3;
+    private TextView textView3;
     private Button button;
     public int  TotalPuan = 0;
-    public ArrayList  arrayList = new ArrayList();
+    public ArrayList arrayList = new ArrayList();
 
     public TestAdapter(Context mContext, View mView, Test test) {
         this.mContext = mContext;

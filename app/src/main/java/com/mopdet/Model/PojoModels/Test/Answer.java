@@ -1,5 +1,8 @@
 package com.mopdet.Model.PojoModels.Test;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Answer {
 
     @SerializedName("id")

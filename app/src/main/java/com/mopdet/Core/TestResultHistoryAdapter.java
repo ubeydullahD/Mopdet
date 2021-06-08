@@ -1,12 +1,31 @@
 package com.mopdet.Core;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.mopdet.Model.PojoModels.TestResultHistory.TestResultHistory;
+import com.mopdet.R;
+import com.mopdet.TestsActivity;
+
+import retrofit2.Response;
+
 public class TestResultHistoryAdapter extends   RecyclerView.Adapter<TestResultHistoryAdapter.CardViewTasatimNesneleriniTutucu> {
 
     private Context context;
     private Response<TestResultHistory> testResultHistory;
-    private View  mView;
+    private View mView;
     private FragmentManager fm ;
-    private  Activity activity;
+    private Activity activity;
 
     private TextView textView13, textView16, textView18;
 
@@ -22,7 +41,7 @@ public class TestResultHistoryAdapter extends   RecyclerView.Adapter<TestResultH
     @Override
     public CardViewTasatimNesneleriniTutucu onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.test_result_history_card,parent,false);
+                inflate(R.layout.test_history_result_card,parent,false);
         return new TestResultHistoryAdapter.CardViewTasatimNesneleriniTutucu(itemView);
     }
 
@@ -56,7 +75,7 @@ public class TestResultHistoryAdapter extends   RecyclerView.Adapter<TestResultH
                 public boolean onKey(View view, int i, KeyEvent keyEvent) {
                     if( i == KeyEvent.KEYCODE_BACK && keyEvent.getAction() == KeyEvent.ACTION_UP) {
 
-                        Intent intent  =  new Intent(activity ,TestsActivity.class);
+                        Intent intent  =  new Intent(activity , TestsActivity.class);
                         activity.startActivity(intent);
 
                     }

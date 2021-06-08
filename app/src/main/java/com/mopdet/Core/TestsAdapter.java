@@ -1,5 +1,34 @@
 package com.mopdet.Core;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.Gson;
+import com.mopdet.Model.PojoModels.BaseTest.BaseTest;
+import com.mopdet.Model.PojoModels.BaseTest.Datum;
+import com.mopdet.Model.PojoModels.Test.Test;
+import com.mopdet.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
+
 public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.CardViewTasatimNesneleriniTutucu> {
 
     private Context mContext;
@@ -9,9 +38,9 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.CardViewTasa
     SharedPreferences mPrefs ;
     private FragmentManager fm;
     private Activity activity;
-    private  Fragment fragment;
+    private Fragment fragment;
 
-    public TestsAdapter(Context mContext, int itemCount, BaseTest baseTest,FragmentManager fm,Activity activity) {
+    public TestsAdapter(Context mContext, int itemCount, BaseTest baseTest, FragmentManager fm, FragmentActivity activity) {
         this.mContext = mContext;
         this.itemCount = itemCount;
         this.test = baseTest;
@@ -25,7 +54,7 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.CardViewTasa
     @Override
     public CardViewTasatimNesneleriniTutucu onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.test_cart_tasarim,parent,false);
+                inflate(R.layout.test_card_tasarim,parent,false);
         return new TestsAdapter.CardViewTasatimNesneleriniTutucu(itemView);
     }
 

@@ -1,6 +1,34 @@
 package com.mopdet;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.mopdet.Core.ApiUtils;
+import com.mopdet.Core.LoadingDialog;
+import com.mopdet.Core.RetrofitProcess;
+import com.mopdet.Model.PojoModels.BaseTest.BaseTest;
+import com.mopdet.Model.PojoModels.LoginUser.LoginUser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -18,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         String json = mPrefs.getString("User", "");
         if(json=="" || json.contains("[]")){
             getTest();
-            setContentView(R.layout.activity_login);
+            setContentView(R.layout.activity_loginn);
             login = findViewById(R.id.cirLoginButton);
             signupButton = findViewById(R.id.signupButton);
             signupButton.setOnClickListener(new View.OnClickListener() {

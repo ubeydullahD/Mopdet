@@ -1,5 +1,34 @@
 package com.mopdet;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.mopdet.Core.ApiUtils;
+import com.mopdet.Core.RetrofitProcess;
+import com.mopdet.Fragments.TestResultHistoryFragment;
+import com.mopdet.Fragments.TestsFragment;
+import com.mopdet.Model.PojoModels.BaseTest.BaseTest;
+import com.mopdet.Model.PojoModels.LoginUser.LoginUser;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class TestsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     private NavigationView navigationView;

@@ -1,8 +1,36 @@
 package com.mopdet.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.google.gson.Gson;
+import com.mopdet.Core.ApiUtils;
+import com.mopdet.Core.RetrofitProcess;
+import com.mopdet.Model.PojoModels.LoginUser.LoginUser;
+import com.mopdet.Model.PojoModels.TestResult.TestResult;
+import com.mopdet.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ScoreFragment extends Fragment {
 
-    private  View mView;
+    private View mView;
     private int total,testId;
     private String testName;
 
@@ -52,7 +80,7 @@ public class ScoreFragment extends Fragment {
 
 
         Gson gson = new Gson();
-        mPrefs = getActivity().getSharedPreferences("Mobdet",Context.MODE_PRIVATE);
+        mPrefs = getActivity().getSharedPreferences("Mobdet", Context.MODE_PRIVATE);
         String json = mPrefs.getString("User", "");
         LoginUser user = gson.fromJson(json,LoginUser.class);
 
