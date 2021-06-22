@@ -1,9 +1,12 @@
 package com.mopdet.Fragments;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,8 +39,10 @@ public class StepByStepFragment extends Fragment {
     private int count = 0;
     public int TotalPuan;
     private boolean butonControl = false;
+    public boolean clearCheckControl = true;
 
-    public StepByStepFragment(Test test) {
+
+    public StepByStepFragment(Test test ) {
         this.test = test;
     }
 
@@ -101,9 +106,12 @@ public class StepByStepFragment extends Fragment {
                             buttonNext.setBackground(getResources().getDrawable(R.color.colorPrimaryDark));
                             buttonNext.setText("FINISH");
                         }
+                        butonControl =false;
+                        clearCheckControl =false;
                         radioGroup.clearCheck();
                         preperaView(count,mView);
-                        butonControl =false;
+                        clearCheckControl =true;
+
                     }
 
                 }else {
@@ -125,13 +133,17 @@ public class StepByStepFragment extends Fragment {
         radioiki = mView.findViewById(R.id.radioButton3);
         radiouc = mView.findViewById(R.id.radioButton4);
         radiodort  = mView.findViewById(R.id.radioButton5);
-        textView.setText((count+1)+"."+test.getData().get(0).getMobdetTest().getQuestions().get(count).getmDQuestion().getQuestion());
+        if(test.getData().get(0).getMobdetTest().getQuestions().get(count).getmDQuestion().getQuestion()==null){
+            textView.setText((count+1)+"."+"Lütfen size en yakın cevabı seçiniz.");
+        }else{
+            textView.setText((count+1)+"."+test.getData().get(0).getMobdetTest().getQuestions().get(count).getmDQuestion().getQuestion());
+        }
         textViewOf.setText((count+1)+" of "+test.getData().get(0).getMobdetTest().getQuestions().size());
 
 
 
 
-        textView.setText((count+1)+"."+test.getData().get(0).getMobdetTest().getQuestions().get(count).getmDQuestion().getQuestion());
+       // textView.setText((count+1)+"."+test.getData().get(0).getMobdetTest().getQuestions().get(count).getmDQuestion().getQuestion());
         radiobir.setText(test.getData().get(0).getMobdetTest().getQuestions().get(count).getAnswer().get(0).getAnswer());
         radioiki.setText(test.getData().get(0).getMobdetTest().getQuestions().get(count).getAnswer().get(1).getAnswer());
         radiouc.setText(test.getData().get(0).getMobdetTest().getQuestions().get(count).getAnswer().get(2).getAnswer());
@@ -142,11 +154,17 @@ public class StepByStepFragment extends Fragment {
                 butonControl=true;
 
                 if(b){
-                    TotalPuan = TotalPuan+4;
-                    Log.e("sa",Integer.toString(TotalPuan));
+                    if(clearCheckControl){
+                        TotalPuan = TotalPuan+4;
+
+                    }
+
                 }else{
-                    TotalPuan = TotalPuan-4;
-                    Log.e("sa",Integer.toString(TotalPuan));
+
+                    if(clearCheckControl){
+                        TotalPuan = TotalPuan-4;
+                    }
+
                 }
             }
         });
@@ -155,11 +173,15 @@ public class StepByStepFragment extends Fragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 butonControl=true;
                 if(b){
-                    TotalPuan = TotalPuan+3;
-                    Log.e("sa",Integer.toString(TotalPuan));
+                   if(clearCheckControl){
+                       TotalPuan = TotalPuan+3;
+                   }
                 }else{
-                    TotalPuan = TotalPuan-3;
-                    Log.e("sa",Integer.toString(TotalPuan));
+                    if(clearCheckControl){
+                        TotalPuan = TotalPuan-3;
+                    }
+
+
                 }
             }
         });
@@ -168,11 +190,15 @@ public class StepByStepFragment extends Fragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 butonControl=true;
                 if(b){
-                    TotalPuan = TotalPuan+2;
-                    Log.e("sa",Integer.toString(TotalPuan));
+                   if(clearCheckControl){
+                       TotalPuan = TotalPuan+2;
+                   }
+
                 }else{
-                    TotalPuan = TotalPuan-2;
-                    Log.e("sa",Integer.toString(TotalPuan));
+                   if(clearCheckControl){
+                       TotalPuan = TotalPuan-2;
+                   }
+
                 }
             }
         });
@@ -181,15 +207,19 @@ public class StepByStepFragment extends Fragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 butonControl=true;
                 if(b){
-                    TotalPuan = TotalPuan+1;
-                    Log.e("sa",Integer.toString(TotalPuan));
+                   if(clearCheckControl){
+                       TotalPuan = TotalPuan+1;
+                   }
+
                 }else{
-                    TotalPuan = TotalPuan-1;
-                    Log.e("sa",Integer.toString(TotalPuan));
+                   if(clearCheckControl){
+                       TotalPuan = TotalPuan-1;
+                   }
                 }
             }
         });
         this.count = this.count+1;
         return mView;
     }
+
 }

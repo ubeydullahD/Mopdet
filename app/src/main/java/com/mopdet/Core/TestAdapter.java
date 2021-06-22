@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 import com.mopdet.Model.PojoModels.Test.Test;
 import com.mopdet.R;
 
@@ -38,6 +39,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.CardViewTasati
         this.mContext = mContext;
         this.mView = mView;
         this.test = test;
+        this.mPrefs=  mContext.getSharedPreferences("Mobdet", Context.MODE_PRIVATE);
 
     }
 
@@ -80,10 +82,11 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.CardViewTasati
                     arrayList.add(test.getData().get(0).getMobdetTest().getQuestions().get(position).getmDQuestion().getId());
                 }
                 if(b){
-                    TotalPuan = TotalPuan+4;
+
+                    addedSharedPreferencesTotalPuan(4,1);
                     Log.e("sa",Integer.toString(TotalPuan));
                 }else{
-                    TotalPuan = TotalPuan-4;
+                    addedSharedPreferencesTotalPuan(4,0);
                     Log.e("sa",Integer.toString(TotalPuan));
                 }
             }
@@ -153,6 +156,37 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.CardViewTasati
             radioiki = itemView.findViewById(R.id.radioiki);
             radiouc = itemView.findViewById(R.id.radiouc);
             radiodort  = itemView.findViewById(R.id.radiodort);
+
+        }
+    }
+
+    public void addedSharedPreferencesTotalPuan(int puan,int type){
+        String json = mPrefs.getString("TotalPuan", "");
+        if(json.equals("") || json.equals("[]") || json  == null){
+
+            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+            prefsEditor.putString("TotalPuan",Integer.toString(puan));
+            prefsEditor.commit();
+
+        }else{
+
+            if(type==1){
+                mPrefs.edit().remove("TotalPuan").commit();
+                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                int puan2 = Integer.parseInt(json);
+                int toplamPuan = puan2+puan;
+                prefsEditor.putString("TotalPuan",Integer.toString(toplamPuan));
+                prefsEditor.commit();
+
+
+            }else{
+                mPrefs.edit().remove("TotalPuan").commit();
+                SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                int puan2 = Integer.parseInt(json);
+                int toplamPuan = puan2-puan;
+                prefsEditor.putString("TotalPuan",Integer.toString(toplamPuan));
+                prefsEditor.commit();
+            }
 
         }
     }
